@@ -8,8 +8,8 @@ const HeaderComponent = () => (
 )
 
 const Header = styled.header`
-	font-family: 'Baloo 2', cursive;
 	padding: 20px;
+	color: #094067;
 	h1 {
 		font-size: 1.5em;
 	}
