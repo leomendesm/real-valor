@@ -23,7 +23,7 @@ const FormComponent = ({form, updateForm}) => (
 					<option value="0">Selecionar</option>
 					<option value="1">1 ano</option>
 					<option value="2">2 anos</option>
-					<option value="3">data específica</option>
+					<option value="3">Data Específica</option>
 				</Select>
 				{form.dateType === '3' &&
 					<Input type="date" onChange={e => updateForm(e, 'date')}/>
@@ -37,7 +37,7 @@ const FormComponent = ({form, updateForm}) => (
 					<option value="0">Selecionar</option>
 					<option value="1">R$ 2000</option>
 					<option value="2">R$ 10000</option>
-					<option value="3">valor específico</option>
+					<option value="3">Valor Específico</option>
 				</Select>
 				{form.amountType === '3' &&
 					<Input type="number" placeholder="Ex: R$ 1000" onChange={e => updateForm(e, 'amount')} />

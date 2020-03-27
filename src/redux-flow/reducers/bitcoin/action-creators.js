@@ -26,6 +26,7 @@ export const requestApi = (dispatch, limit, timestamp, amount, investmentType) =
 		.catch(err => dispatch({type: FETCH_BITCOIN_FAIL, payload: err}))
 	}
 	else {
+		amount = parseFloat(amount)
 		const profit = amount * 0.00027397260274
 		const totalProfit = amount + (profit * limit+1)
 		const values = [[moment().subtract(limit, 'days').format("MM/DD/YYYY"), amount.toFixed(2)]]
