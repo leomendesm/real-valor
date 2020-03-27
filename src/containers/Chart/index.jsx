@@ -1,20 +1,40 @@
-import React from 'react'
+import React, { Component } from 'react'
 import  ReactApexChart from 'react-apexcharts'
 import config from "./config"
 import { connect } from "react-redux"
+import { fetchBitcoin } from "../../redux-flow/reducers/bitcoin/action-creators"
 
-const series = [{
-	name: 'Bitcoin',
-	data: [11, 32, 45, 32, 34, 52, 41]
-}]
+class Chart extends Component{
+	componentDidUpdate(prevProps, prevState, snapshot) {
+		if(this.props.form !== prevProps.form){
+			const {limit, date, amount} = this.props.form
+			if(limit !== 0 && date !== 0 && amount !== 0)
+				this.props.fetchBitcoin({limit, timestamp: date, amount})
+			}
+	}
 
-const Chart = () => (
-	<div id="chart">
-		<ReactApexChart options={config} series={series} type="area" height={350} />
-	</div>
-)
+	render() {
+		const { data: bitcoin } = this.props.bitcoin
+		const {limit, date, amount} = this.props.form
+		const emptyForm = limit !== 0 && date !== 0 && amount !== 0
+		return (
+			<div id="chart">
+				{(!this.props.bitcoin.isFetching && emptyForm) && <ReactApexChart
+					options={config}
+					series={[{name: 'bitcoin', data: bitcoin}]}
+					type="area"
+					height={350} /> }
+			</div>
+		)
+	}
+}
 
 const mapStateToProps = state => ({
-	bitcoin: state.bitcoin
+	bitcoin: state.bitcoin,
+	form: state.form
 })
-export default connect(mapStateToProps)(Chart)
+
+const mapDispatchToProps = dispatch => ({
+	fetchBitcoin: (values) => fetchBitcoin(values, dispatch)
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Chart)

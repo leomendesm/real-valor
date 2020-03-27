@@ -6,15 +6,25 @@ import {
 	FETCH_BITCOIN_FAIL
 } from './actions'
 
-import { API } from '../../../utils'
+import {API, calcDailyPrice, calcRate} from '../../../utils'
+import moment from "moment"
 
-export const requestApi = (dispatch, limit, timestamp) => {
-	return axios.get(API(limit, timestamp))
-		.then(res => dispatch({ type: FETCH_BITCOIN_SUCCESS, payload: res.data.items }))
+export const requestApi = (dispatch, limit, timestamp, amount) => {
+	axios.get(API(limit, timestamp))
+		.then(res => {
+			let values = res.data.Data
+			for(let i = 0; i < values.length; i++){
+				const rate = calcRate(values[i].open, values[i].close)
+				values[i] = (i === 0)?
+					[moment().subtract(values.length - i, 'days').format("MM/DD/YYYY"), amount] :
+					[moment().subtract(values.length - i, 'days').format("MM/DD/YYYY"), calcDailyPrice(rate, values[i-1][1]).toFixed(2)]
+			}
+			dispatch({ type: FETCH_BITCOIN_SUCCESS, payload: values })
+		})
 		.catch(err => dispatch({ type: FETCH_BITCOIN_FAIL, payload: err }))
 }
 
-export const fetchBitcoin = ({ limit, timestamp },dispatch) => {
+export const fetchBitcoin = ({ limit, timestamp, amount },dispatch) => {
 	dispatch({ type: FETCH_BITCOIN })
-	return () => requestApi(dispatch,limit, timestamp)
+	requestApi(dispatch, limit, timestamp, amount)
 }

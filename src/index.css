@@ -5,7 +5,17 @@ body {
     background: #fffffe;
     font-family: 'Baloo 2', cursive;
 }
+
 .apexcharts-legend {
     margin-top: 20px;
 }
 
+@media (min-width: 1300px) {
+    body {
+        display: flex;
+        justify-content: center;
+    }
+    #root {
+        width: 1300px;
+    }
+}

@@ -50,13 +50,13 @@ const FormComponent = ({form, updateForm}) => (
 const Form = styled.form`
 	padding: 20px;
 	background: #fffffe;
-	margin: 0 10px;
 	color: #094067;
 	border-radius: 4px;
 	border: 3px solid #094067;
 	label {
 		font-weight: bold;
 	}
+	margin: 0 10px 20px;
 `
 
 const mapStateToProps = state => ({

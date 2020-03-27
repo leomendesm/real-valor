@@ -27,7 +27,7 @@ describe('Form action creators', () => {
 		updateForm({value: '1', field:'dateType'}, dispatch)
 		expect(dispatch.mock.calls.length).toBe(3)
 		expect(dispatch.mock.calls[0][0]).toStrictEqual({type: UPDATE_FORM, payload: {field: 'date', value: yearTimestamp}})
-		expect(dispatch.mock.calls[1][0]).toStrictEqual({type: UPDATE_FORM, payload: {field: 'limit', value: 365}})
+		expect(dispatch.mock.calls[1][0]).toStrictEqual({type: UPDATE_FORM, payload: {field: 'limit', value: 364}})
 		expect(dispatch.mock.calls[2][0]).toStrictEqual({type: UPDATE_FORM, payload: {value: '1', field:'dateType'}})
 	})
 
