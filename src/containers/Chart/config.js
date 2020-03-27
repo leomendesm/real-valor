@@ -6,8 +6,6 @@ const config =  {
 	dataLabels: {
 		enabled: false
 	},
-	toolbar: false,
-	zoom: false,
 	stroke: {
 		curve: 'smooth'
 	},

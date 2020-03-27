@@ -1,29 +1,47 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FormGroup, InputGroup, Input, Select } from "../../components/Form"
+import { FormGroup, InputGroup, Input, Select, SelectFull } from "../../components/Form"
+import { connect } from "react-redux"
+import updateFormDispatch from "../../redux-flow/reducers/form/action-creators"
 
-const FormComponent = () => (
+const FormComponent = ({form, updateForm}) => (
 	<Form action="">
+		<FormGroup>
+			<label htmlFor="investment">Investimento:</label>
+			<InputGroup>
+				<SelectFull id="investment" onChange={e => updateForm(e, 'investmentType')}>
+					<option value="0">Selecionar</option>
+					<option value="1">Bitcoin</option>
+					<option value="2">Tesouro Direto</option>
+				</SelectFull>
+			</InputGroup>
+		</FormGroup>
 		<FormGroup>
 			<label htmlFor="date">Período:</label>
 			<InputGroup>
-				<Select id="date">
+				<Select id="date" onChange={e => updateForm(e, 'dateType')}>
+					<option value="0">Selecionar</option>
 					<option value="1">1 ano</option>
 					<option value="2">2 anos</option>
 					<option value="3">data específica</option>
 				</Select>
-				<Input type="date"/>
+				{form.dateType === '3' &&
+					<Input type="date" onChange={e => updateForm(e, 'date')}/>
+				}
 			</InputGroup>
 		</FormGroup>
 		<FormGroup>
-			<label htmlFor="date">Valor:</label>
+			<label htmlFor="amount">Valor:</label>
 			<InputGroup>
-				<Select id="date">
+				<Select id="amount" onChange={e => updateForm(e, 'amountType')}>
+					<option value="0">Selecionar</option>
 					<option value="1">R$ 2000</option>
 					<option value="2">R$ 10000</option>
 					<option value="3">valor específico</option>
 				</Select>
-				<Input type="number" placeholder="Ex: R$ 1000" />
+				{form.amountType === '3' &&
+					<Input type="number" placeholder="Ex: R$ 1000" onChange={e => updateForm(e, 'amount')} />
+				}
 			</InputGroup>
 		</FormGroup>
 	</Form>
@@ -41,4 +59,10 @@ const Form = styled.form`
 	}
 `
 
-export default FormComponent
+const mapStateToProps = state => ({
+	form: state.form
+})
+const mapDispatchToProps = dispatch => ({
+	updateForm: (e, field) => updateFormDispatch({field, value: e.target.value}, dispatch)
+})
+export default connect(mapStateToProps, mapDispatchToProps)(FormComponent)

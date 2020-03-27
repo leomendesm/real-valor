@@ -4,9 +4,6 @@ import config from "./config"
 import { connect } from "react-redux"
 
 const series = [{
-	name: 'Tesouro direto',
-	data: [31, 40, 28, 51, 42, 109, 100]
-}, {
 	name: 'Bitcoin',
 	data: [11, 32, 45, 32, 34, 52, 41]
 }]

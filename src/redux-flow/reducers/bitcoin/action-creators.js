@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 import {
 	FETCH_BITCOIN,
 	FETCH_BITCOIN_SUCCESS,
@@ -5,8 +7,6 @@ import {
 } from './actions'
 
 import { API } from '../../../utils'
-
-import axios from 'axios'
 
 export const requestApi = (dispatch, limit, timestamp) => {
 	return axios.get(API(limit, timestamp))

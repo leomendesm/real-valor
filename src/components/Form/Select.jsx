@@ -9,4 +9,8 @@ const Select = styled.select`
 	font-weight: 600;
 	color: #094067;
 `
+
+export const SelectFull = styled(Select)`
+	width: 100%;
+`
 export default Select
