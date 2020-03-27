@@ -5,4 +5,7 @@ body {
     background: #fffffe;
     font-family: 'Baloo 2', cursive;
 }
+.apexcharts-legend {
+    margin-top: 20px;
+}
 

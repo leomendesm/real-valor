@@ -41,12 +41,4 @@ const Form = styled.form`
 	}
 `
 
-
-
-
-
-
-
-
-
 export default FormComponent
