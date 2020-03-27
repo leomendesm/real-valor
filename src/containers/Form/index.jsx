@@ -11,8 +11,8 @@ const FormComponent = ({form, updateForm}) => (
 			<InputGroup>
 				<SelectFull id="investment" onChange={e => updateForm(e, 'investmentType')}>
 					<option value="0">Selecionar</option>
-					<option value="1">Bitcoin</option>
-					<option value="2">Tesouro Direto</option>
+					<option value="bitcoin">Bitcoin</option>
+					<option value="tesouro">Tesouro Direto</option>
 				</SelectFull>
 			</InputGroup>
 		</FormGroup>

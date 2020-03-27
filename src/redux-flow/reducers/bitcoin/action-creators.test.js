@@ -10,7 +10,7 @@ describe('Bitcoin action creators', () => {
 		const data = { response: true }
 		mock.onGet(API(1,1)).reply(200, data)
 		const mockCallback = jest.fn()
-		fetchBitcoin({limit: 1, timestamp: 1},mockCallback)
+		fetchBitcoin({limit: 1, timestamp: 1, amount: 1, investmentType: 'bitcoin'},mockCallback)
 		expect(mockCallback.mock.calls.length).toBe(1)
 		done()
 	})
@@ -20,7 +20,7 @@ describe('Bitcoin action creators', () => {
 		const data = { response: true }
 
 		mock.onGet(API(1,1)).reply(200, data)
-		requestApi(mockCallback, 1, 1)
+		requestApi(mockCallback, 1, 1, 1, 'bitcoin')
 
 		done()
 		expect(mockCallback.mock.calls.length).toBe(0)
@@ -31,7 +31,7 @@ describe('Bitcoin action creators', () => {
 		const mockCallback = jest.fn()
 		const data = { response: true }
 		mock.onGet(API(1,1)).reply(500, data)
-		requestApi(mockCallback, 1, 1)
+		requestApi(mockCallback, 1, 1, 1, 'bitcoin')
 		done()
 		expect(mockCallback.mock.calls.length).toBe(0)
 	})
