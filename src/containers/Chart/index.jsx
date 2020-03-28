@@ -21,7 +21,7 @@ class Chart extends Component{
 			<div id="chart">
 				{(!this.props.bitcoin.isFetching && emptyForm) && <ReactApexChart
 					options={config}
-					series={[{name: 'bitcoin', data: bitcoin}]}
+					series={[{name: 'cotação', data: bitcoin}]}
 					type="area"
 					height={350} /> }
 			</div>

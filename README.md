@@ -1,6 +1,10 @@
 # Challenge - Real Valor
 ## Descrição
 Este repositório contém o projeto do teste de Frontend da empresa Real Valor.
+## Solução
+A solução do projeto para o bitcoin foi baseada em processar os dados enviados pela api e tirar informações como a 
+cotação diária da moeda e acrescentar os valores  dia a dia, já para o Tesouro direto, o cálculo foi baseado nos 
+10% anuais dividos por dia e multiplicados pela quantidade de dias selecionados.
 ## Pré-requisitos
 Para rodar o projeto será necessário possuir:
 - NodeJs
